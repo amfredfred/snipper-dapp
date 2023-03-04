@@ -1,0 +1,1 @@
+export type ElemetnsProps = React.HTMLAttributes<HTMLElement>
