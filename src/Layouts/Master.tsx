@@ -1,4 +1,4 @@
-import { ElemetnsProps } from "../Store/Types/Interdaces";
+import { ElemetnsProps } from "../Store/Types/Interfaces";
 import MainDrawer from "./Drawers/MainDrawer";
 import Footer from "./Footer";
 import Header from "./Header";
