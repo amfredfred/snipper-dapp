@@ -540,7 +540,8 @@ export default function () {
                 timeout,
                 { value: NP.to_wei(String(cState?.eth_amount), baseToken['decimals']) }
             )
-        ])
+        ]) 
+        
         if (swap.status === 'fulfilled') {
             handleConfigUpdate('inPosistion', true)
             handleConfigUpdate('lastBuy', cState?.price?.current)
