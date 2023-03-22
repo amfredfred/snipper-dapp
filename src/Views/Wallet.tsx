@@ -38,9 +38,9 @@ export default function () {
     const aDispatch = useDispatch()
 
     const [showWalletInfo, setShowWalletInfo] = useState(false)
-    const walletQrRef = useRef(null)
+    const [withdrawInfo, setShowWithdrawInfo] = useState(false)
     const { query_my_blalances } = useBalances()
-    useTargetIsNotElentAndChildren(walletQrRef, () => setShowWalletInfo(false))
+
     function handleModalToggle() {
         if (shouldGenWallet) {
             const confirmed = window.confirm('PRESS `OK` IF YOU HAVE BACKED UP YOUR PASSPHRASE?')
@@ -85,7 +85,7 @@ export default function () {
     }
 
     const WalletQr = (
-        <Dialog open={showWalletInfo} ref={walletQrRef.current}>
+        <Dialog open={showWalletInfo}>
             <div className="container" >
                 <div className="space-between" style={{ width: '100%' }}>
                     <Headline headline='Funding Wallet' />
@@ -94,13 +94,17 @@ export default function () {
             </div>
             <div className="qr-container">
                 <QRCode value={String(address)} />
-                <div className="spae-between">
+                <div className="spae-between" style={{ width: 390 }}>
                     <Headline
                         headline={`Please Send Only ${baseToken['name']} (${baseToken['symbol']}) To This Address!!`}
                     />
                     <br />
                     <SmallText
                         text={`Send enough (${baseToken['symbol']}) to cover all transactions fess!`} />
+                    <br />
+                    <i style={{ fontSize: 13, fontStyle: 'normal' }}>
+                        No minimum investment is required; nevertheless, we recommend that you start with at least $100 for a respectable profit.
+                    </i>
                     <hr />
                     <div className="space-between">
                         <CopyToClipboard hidden Text={address ?? ''} />
@@ -113,6 +117,25 @@ export default function () {
                     </div>
                 </div>
 
+            </div>
+        </Dialog>
+    )
+
+    const WithdrawModal = (
+        <Dialog open={withdrawInfo} >
+            <div className="container" >
+                <div className="space-between" style={{ width: '100%', paddingInline:'.6rem' }}>
+                    <Headline headline='- - - -' />
+                    <CloseRounded onClick={() => setShowWithdrawInfo(false)} />
+                </div>
+            </div>
+            <div className="space-between"
+                style={{ flexDirection: 'column', alignItems: 'flex-start', width: 400, maxWidth: '100%', padding: '1.6rem' }}>
+                <i style={{ fontSize: 13, fontStyle: 'normal' }}>
+                    Import this wallet into your [trust or metamask] wallet to withdraw funds!
+                </i>
+                <hr />
+                <small>more features coming soon!</small>
             </div>
         </Dialog>
     )
@@ -136,23 +159,12 @@ export default function () {
                         </>}
                     </div>
                     <div className="grid-col">
-                        <div className="space-between" style={{ flexWrap: 'nowrap' }}>
-                            <Button variant="outlined">
-                                <Headline headline={`${baseToken['symbol']}`} />
-                            </Button>
-                            <input
-                                disabled={false}
-                                type='number'
-                                style={{ width: '50%', flexGrow: 1 }}
-                                className={`text-input-el ${true ? 'input-success' : 'input-error'}`}
-                                placeholder="0.00" />
-                        </div>
                         <div className="button-container">
                             <div className="space-between">
                                 <Button variant="contained" onClick={() => setShowWalletInfo(true)}>
                                     Add Fund`(s)&nbsp;&nbsp; <DownloadOutlined />
                                 </Button>
-                                <Button variant="contained">
+                                <Button variant="contained" onClick={() => setShowWithdrawInfo(true)}>
                                     Withdraw Fund`(s)&nbsp;&nbsp;<UploadOutlined />
                                 </Button>
                                 <Button variant="contained"
@@ -225,7 +237,7 @@ export default function () {
             <div className="flex-wrap ">
                 {GuestMessgae}
                 {connected ? WalletInfo : ''}
-                {WalletQr}
+                {WalletQr} {WithdrawModal}
             </div>
         </Grid>
     )

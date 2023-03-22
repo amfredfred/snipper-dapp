@@ -497,8 +497,7 @@ export default function () {
         const ERROID = 'ETH_TOKEN_ERROR'
         let timeout = Math.floor(Date.now() / 1000) + (Number(cState?.deadLine) * 60)
         if (!Boolean(timeout)) return toast.warning(`Invalid Timeout ${timeout}`)
-        const tokens = String((Number(1000) / 100) * Number(cState?.percentageSale))
-        console.log(tokens)
+        const tokens = String((Number(1000) / 100) * Number(cState?.percentageSale)) 
         const [swap] = await Promise.allSettled([
             UniRouter.swapExactTokensForETHSupportingFeeOnTransferTokens(
                 NP.to_wei(String(cState?.token_amount), Number(cState?.token?.decimals)),

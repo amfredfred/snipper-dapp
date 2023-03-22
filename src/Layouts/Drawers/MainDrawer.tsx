@@ -32,7 +32,7 @@ export default function () {
                         </Link>
                     </li>
 
-                    <li className="nav-li">
+                    {/* <li className="nav-li">
                         <Link to={'/wallet'} className='nav-link'>
                             <div className="nav-icon">
                                 <Explore className='nav-icon' />
@@ -96,7 +96,7 @@ export default function () {
                                 Wallet
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
             </nav>
         </div>
