@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.154535b1.css",
+    "main.js": "/static/js/main.328a6564.js",
+    "static/media/poly_digital-14.jpg": "/static/media/poly_digital-14.204e4fc6ec914d280aa3.jpg",
+    "index.html": "/index.html",
+    "main.154535b1.css.map": "/static/css/main.154535b1.css.map",
+    "main.328a6564.js.map": "/static/js/main.328a6564.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.154535b1.css",
+    "static/js/main.328a6564.js"
+  ]
+}
